@@ -6,6 +6,12 @@
 
 class Employee extends Person
 {
+
+	public function sort_column($field)
+	{
+		return array_key_exists($field, $this->db->list_fields('employees')) ? $field : 'person_id';
+	}
+
 	/*
 	Determines if a given person_id is an employee
 	*/

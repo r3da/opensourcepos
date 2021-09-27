@@ -6,6 +6,12 @@
 
 class Cashup extends CI_Model
 {
+
+	public function sort_column($field)
+	{
+		return array_key_exists($field, $this->db->list_fields('cashups')) ? $field : 'id';
+	}
+
 	/*
 	Determines if a given Cashup_id is an Cashup
 	*/

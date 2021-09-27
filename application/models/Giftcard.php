@@ -6,6 +6,12 @@
 
 class Giftcard extends CI_Model
 {
+
+	public function sort_column($field)
+	{
+		return array_key_exists($field, $this->db->list_fields('giftcards')) ? $field : 'giftcard_id';
+	}
+
 	/*
 	Determines if a given giftcard_id is a giftcard
 	*/

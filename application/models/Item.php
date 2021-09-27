@@ -5,6 +5,12 @@
 
 class Item extends CI_Model
 {
+
+	public function sort_column($field)
+	{
+		return array_key_exists($field, $this->db->list_fields('items')) ? $field : 'item_id';
+	}
+
 	/*
 	Determines if a given item_id is an item
 	*/

@@ -9,6 +9,11 @@ class Supplier extends Person
 	const GOODS_SUPPLIER = 0;
 	const COST_SUPPLIER = 1;
 
+	public function sort_column($field)
+	{
+		return array_key_exists($field, $this->db->list_fields('suppliers')) ? $field : 'person_id';
+	}
+
 	/*
 	Determines if a given person_id is a customer
 	*/
