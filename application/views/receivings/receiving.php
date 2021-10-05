@@ -276,8 +276,10 @@ if (isset($success))
 				?>
 			</table>
 			
-			<?php echo anchor($controller_name."/remove_supplier", '<span class="glyphicon glyphicon-remove">&nbsp</span>' . $this->lang->line('common_remove').' '.$this->lang->line('suppliers_supplier'),
-								array('class'=>'btn btn-danger btn-sm', 'id'=>'remove_supplier_button', 'title'=>$this->lang->line('common_remove').' '.$this->lang->line('suppliers_supplier'))); ?>
+			<button class="btn btn-danger btn-sm" id="remove_supplier_button" title="<?php echo $this->lang->line('common_remove').' '.$this->lang->line('suppliers_supplier')?>">
+				<span class="glyphicon glyphicon-remove">&nbsp</span><? echo $this->lang->line('common_remove').' '.$this->lang->line('suppliers_supplier') ?>
+			</button>
+
 		<?php
 		}
 		else
@@ -402,6 +404,13 @@ if (isset($success))
 <script type="text/javascript">
 $(document).ready(function()
 {
+	$("#remove_supplier_button").click(function() {
+	    $.post("<?php echo site_url('receivings/remove_supplier'); ?>", function() {
+            window.location.href = "<?php echo site_url('receivings'); ?>";
+        });
+        
+    });
+
 	$("#item").autocomplete(
 	{
 		source: '<?php echo site_url($controller_name."/stock_item_search"); ?>',

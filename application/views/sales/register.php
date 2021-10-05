@@ -382,8 +382,10 @@ if(isset($success))
 					?>
 				</table>
 
-				<?php echo anchor($controller_name."/remove_customer", '<span class="glyphicon glyphicon-remove">&nbsp</span>' . $this->lang->line('common_remove').' '.$this->lang->line('customers_customer'),
-								array('class'=>'btn btn-danger btn-sm', 'id'=>'remove_customer_button', 'title'=>$this->lang->line('common_remove').' '.$this->lang->line('customers_customer'))); ?>
+				<button class="btn btn-danger btn-sm" id="remove_customer_button" title="<?php echo $this->lang->line('common_remove').' '.$this->lang->line('customers_customer')?>">
+					<span class="glyphicon glyphicon-remove">&nbsp</span><? echo $this->lang->line('common_remove').' '.$this->lang->line('customers_customer') ?>
+				</button>
+
 			<?php
 			}
 			else
@@ -662,6 +664,13 @@ if(isset($success))
 <script type="text/javascript">
 $(document).ready(function()
 {
+	$("#remove_customer_button").click(function() {
+	    $.post("<?php echo site_url('sales/remove_customer'); ?>", function() {
+            window.location.href = "<?php echo site_url('sales'); ?>";
+        });
+
+    });
+
 	$("input[name='item_number']").change(function() {
 		var item_id = $(this).parents('tr').find("input[name='item_id']").val();
 		var item_number = $(this).val();
